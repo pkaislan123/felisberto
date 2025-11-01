@@ -18,6 +18,11 @@ import { useEffect } from 'react';
 
 function App() {
 
+   const videos = [
+    { src: '/videos/video1.mp4', caption: 'Base Inteligente' },
+    { src: '/videos/video2.mp4', caption: 'Sem Fronteiras' },
+    ];
+
   useEffect(() => {
     const applyCSS = () => {
       const blocks = document.querySelectorAll('.instagram-clean .instagram-media');
@@ -47,6 +52,13 @@ function App() {
     }
   }, []);
 
+ const handleMouseEnter = (e) => {
+    e.currentTarget.controls = true;
+  };
+
+  const handleMouseLeave = (e) => {
+    e.currentTarget.controls = false;
+  };
 
   return (
     <div className="container">
@@ -113,19 +125,24 @@ function App() {
           />
 
         </div>
-
-        <div
-          className="instagram-clean"
-          dangerouslySetInnerHTML={{
-            __html: `
-          <blockquote class="instagram-media" 
-                      data-instgrm-captioned 
-                      data-instgrm-permalink="https://www.instagram.com/reel/DQepysSjh1T/" 
-                      data-instgrm-version="14">
-          </blockquote>
-        `
-          }}
-        />
+       
+       
+        <div className="video-grid" style={{paddingTop: 20}}>
+      {videos.map((video, index) => (
+        <div className="video-item" key={index}>
+          <video
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
+            preload="metadata"
+            muted
+          >
+            <source src={video.src} type="video/mp4" />
+            Seu navegador não suporta vídeo.
+          </video>
+          <p className="video-caption">{video.caption}</p>
+        </div>
+      ))}
+    </div>
 
       </div>
 

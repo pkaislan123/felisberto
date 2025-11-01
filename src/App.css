@@ -114,24 +114,63 @@ h2 {
   transform: scale(1.1);
 }
 
-.fb-video {
+  .fb-video {
   margin-top: 20px;
   display: flex;
   justify-content: center;
 }
 
-.fb-post iframe {
-  max-width: 100%;
-  /* não ultrapassa a largura do card */
+ .fb-post-container {
   width: 100%;
-  height: auto;
-  /* ajusta a altura automaticamente */
-  min-height: 400px;
-  /* altura mínima para evitar colapso */
+  max-width: 500px;
+  overflow: hidden;
+  -webkit-mask-image: radial-gradient(circle, #000 100%, #000 100%);
+  border-radius: 20px;
 }
-
 /* App.css ou index.css */
 .instagram-clean .instagram-media > div:first-child,
 .instagram-clean .instagram-media > div:last-child {
   display: none !important;
+}
+
+.video-card {
+  max-width: 1000px;
+  margin: 20px auto;
+  padding: 20px;
+  border-radius: 20px;
+  background-color: #fff;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  font-family: Arial, sans-serif;
+}
+
+.video-card-title {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 1.5rem;
+}
+
+.video-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* 2 vídeos por linha */
+  gap: 20px;
+}
+
+.video-item video {
+  width: 100%;
+  border-radius: 15px;
+  display: block;
+}
+
+.video-caption {
+  text-align: center;
+  margin-top: 8px;
+  font-size: 0.9rem;
+  color: #333;
+}
+
+/* MOBILE: 1 vídeo por linha */
+@media (max-width: 768px) {
+  .video-grid {
+    grid-template-columns: 1fr; /* 1 vídeo por linha */
+  }
 }
