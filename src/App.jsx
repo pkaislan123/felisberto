@@ -11,11 +11,50 @@ import {
 import { faGlobe, faEnvelope, faShareAlt } from '@fortawesome/free-solid-svg-icons'
 import { faWhatsapp } from '@fortawesome/free-brands-svg-icons'
 
+import { faCheckCircle } from '@fortawesome/free-solid-svg-icons'
+import { useEffect } from 'react';
+
+
+
 function App() {
+
+  useEffect(() => {
+    const applyCSS = () => {
+      const blocks = document.querySelectorAll('.instagram-clean .instagram-media');
+      blocks.forEach(block => {
+        // Remove cabeçalho e footer gerados pelo Instagram
+        const firstChild = block.firstChild;
+        const lastChild = block.lastChild;
+        if (firstChild) firstChild.style.display = 'none';
+        if (lastChild) lastChild.style.display = 'none';
+      });
+    };
+
+    // Função para carregar o script do Instagram
+    if (!window.instgrm) {
+      const script = document.createElement('script');
+      script.src = "https://www.instagram.com/embed.js";
+      script.async = true;
+      document.body.appendChild(script);
+      script.onload = () => {
+        window.instgrm.Embeds.process();
+        applyCSS();
+      };
+    } else {
+      window.instgrm.Embeds.process();
+      // Pequeno delay para garantir que o embed foi renderizado
+      setTimeout(applyCSS, 500);
+    }
+  }, []);
+
+
   return (
     <div className="container">
       <div className="card">
-        <img src={capa} alt="Foto de perfil" className="profile-img" />
+        <div className="profile-wrapper">
+          <img src={capa} alt="Foto de perfil" className="profile-img" />
+          <FontAwesomeIcon icon={faCheckCircle} className="verified-icon" />
+        </div>
         <h2>Menotti Calliari</h2>
 
         <div className="social-icons">
@@ -74,7 +113,23 @@ function App() {
           />
 
         </div>
+
+        <div
+          className="instagram-clean"
+          dangerouslySetInnerHTML={{
+            __html: `
+          <blockquote class="instagram-media" 
+                      data-instgrm-captioned 
+                      data-instgrm-permalink="https://www.instagram.com/reel/DQepysSjh1T/" 
+                      data-instgrm-version="14">
+          </blockquote>
+        `
+          }}
+        />
+
       </div>
+
+
     </div>
   )
 }
