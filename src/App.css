@@ -1,0 +1,89 @@
+/* Reset e container (mantém os ajustes anteriores) */
+html, body, #root {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start; /* troca de center para flex-start */
+  min-height: 100vh;
+  padding-top: 40px; /* deixa espaço no topo */
+  background-color: #f0f0f0;
+}
+
+.card {
+  width: 50%;
+  max-width: 600px;
+  background-color: #ffffff;
+  border-radius: 20px;
+  text-align: center;
+  padding: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+ .profile-img {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 4px solid #ddd;
+  margin-top: 20px;
+  margin-bottom: 15px;
+}
+
+h2 {
+  margin-top: 15px;
+  color: rgb(0, 0, 0);       /* cor preta */
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;          /* peso da fonte */
+  font-size: 22px;           /* tamanho da fonte */
+  line-height: 28px;         /* altura da linha */
+  font-style: normal;        /* estilo normal */
+}
+
+/* Área dos ícones sociais */
+.social-icons {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+/* Cada botão de ícone */
+.social-icons a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50px; /* controle de tamanho */
+  height: 50px;
+  background-color: #000;
+  color: #fff;
+  border-radius: 50%;
+  text-decoration: none;
+  font-size: 22px; /* tamanho do ícone */
+  transition: all 0.3s ease;
+}
+
+/* Efeito hover */
+.social-icons a:hover {
+  background-color: #444;
+  transform: scale(1.1);
+}
+
+.fb-video {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.fb-post iframe {
+  max-width: 100%; /* não ultrapassa a largura do card */
+  width: 100%;
+  height: auto; /* ajusta a altura automaticamente */
+  min-height: 400px; /* altura mínima para evitar colapso */
+}
